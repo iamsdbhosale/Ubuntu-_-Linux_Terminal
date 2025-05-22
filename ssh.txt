@@ -1,0 +1,12 @@
+ssh username@ip_address -p 22   //-p 22 port 22 optional default
+root@XXX.XXX.XXX.xx's password:
+sdbhosale@XXX.XXX.XXX.xx's password:
+
+---
+After entering password :
+---
+Microsoft Windows [Version 10.0.19045.5737]
+(c) Microsoft Corporation. All rights reserved.
+
+k.k@DESKTOP-SD8SJ3J C:\Users\k.k>
+---

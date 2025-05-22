@@ -1,0 +1,78 @@
+cmd:
+useradd
+userdel
+usermod
+groupadd
+groupdel
+---
+Files
+
+/etc/passwd
+/etc/group
+/etc/shadow
+---
+
+✅ 1. Allow sudo for Specific Users Only
+Step 1: Make sure only trusted users are in the sudo group:
+CMD :
+getent group sudo
+---
+Step 2: To remove a user from sudo:
+CMD :
+sudo deluser username sudo
+
+Ex.
+sudo deluser laxmi sudo
+sudo deluser tanmaybhosale sudo 
+---
+Step 3: To add a user to sudo:
+CMD :
+sudo usermod -aG sudo username
+Ex.
+sudo usermod -aG sudo tanmaybhosale
+---
+Restart SSH :
+sudo systemctl restart ssh
+---
+🔧 1. Temporarily Change the Prompt
+Just run this in your terminal:
+
+CMD :
+export PS1="[\u@\h \W]\$ "
+
+Meaning of symbols:
+Symbol	Meaning
+\u	Username
+\h	Hostname (short)
+\W	Current directory (basename)
+\w	Full path of current directory
+\$	Shows $ for normal, # for root
+---
+To add a user in Linux with a home directory, use the following command:
+
+sudo useradd -m username
+Replace username with the actual name you want to give the user.
+
+Explanation:
+useradd – the command to create a new user.
+-m – tells the system to create the user's home directory (e.g., /home/username).
+---
+set password too):
+After adding the user, you can set their password with:
+
+sudo passwd username
+---
+To delete a user along with their home directory in Linux, use the following command:
+
+sudo userdel -r username
+Explanation:
+userdel: Deletes the user account.
+-r: Removes the user's home directory and mail spool along with the user account.
+username: The name of the user you want to delete.
+---
+⚠️ Warning: This will permanently delete the user's home directory and all files inside it. Make sure to back up any important data before running this command.
+---
+If you only want to delete the home directory (not the user):
+sudo rm -r /home/username
+Use this only if the user account still exists but you want to remove their home directory manually.
+---
