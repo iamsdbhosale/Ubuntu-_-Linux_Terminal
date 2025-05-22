@@ -82,6 +82,10 @@ Use this only if the user account still exists but you want to remove their home
 Adding User in Linux:
 useradd bhosale // adding user without home directory
 useradd -m BHOSALE // adding user with home directory
+
+sudo userdel -r
+or for Root user :
+userdel -r BHOSALE
 ---
 pwd is knowing current path
 ---
@@ -96,4 +100,39 @@ useradd: user 'bhosale' already exists
 root@humanrobot:/home# useradd -m BHOSALE
 root@humanrobot:/home# ls
 BHOSALE  laxmi  poojabhosale  sdbhosale  tanmaybhosale
+---
+CMD to check Linux users  :
+cat /etc/passwd
+---
+id username
+above cmd used to know information of user
+---
+userdel: user bhosale is currently used by process 7617
+
+
+ChatGPT said:
+The error message:
+
+userdel: user bhosale is currently used by process 7617
+means you're trying to delete the user bhosale while a process belonging to that user (with PID 7617) is still running. Linux doesn't allow deletion of users who have active processes.
+
+🛠️ Solution Options:
+✅ Option 1: Kill the user’s processes before deleting
+
+sudo pkill -u bhosale
+sudo userdel -r bhosale
+pkill -u bhosale kills all processes belonging to user bhosale.
+
+userdel -r bhosale deletes the user and their home directory.
+
+⚠️ Option 2: Kill only specific process
+If you know what process 7617 is and want to just stop that:
+
+sudo kill 7617
+sudo userdel -r bhosale
+🧪 Option 3: Force delete (not recommended)
+You can try:
+
+sudo userdel -f -r bhosale
+⚠️ Use this only if you're sure the user's processes won't break anything (not logged in via SSH, not running critical services).
 ---
