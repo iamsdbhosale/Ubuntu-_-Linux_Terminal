@@ -136,3 +136,7 @@ You can try:
 sudo userdel -f -r bhosale
 ⚠️ Use this only if you're sure the user's processes won't break anything (not logged in via SSH, not running critical services).
 ---
+root@humanrobot:/home# ls -ltr
+
+display all users with details
+---
