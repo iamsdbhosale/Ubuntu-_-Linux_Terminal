@@ -138,11 +138,23 @@ sudo userdel -f -r bhosale
 ---
 root@humanrobot:/home# ls -ltr
 
-display all users with details
+display all users with group details
 ---
 less /etc/group
 to check group added in Linux
 Press End key to go to bottom
 
 Shift+q -> to close
+---
+See all groups:
+getent group
+cat /etc/group
+---
+To add a group in Linux, you can use the groupadd command. Here's how:
+sudo groupadd group_name
+Ex.
+sudo groupadd QA
+---
+To change group of existing user :
+usermod -g QA laxmi
 ---
