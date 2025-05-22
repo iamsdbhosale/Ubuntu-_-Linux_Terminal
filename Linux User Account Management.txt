@@ -61,6 +61,8 @@ set password too):
 After adding the user, you can set their password with:
 
 sudo passwd username
+Ex. 
+sudo passwd BHOSALE
 ---
 To delete a user along with their home directory in Linux, use the following command:
 
@@ -75,4 +77,23 @@ username: The name of the user you want to delete.
 If you only want to delete the home directory (not the user):
 sudo rm -r /home/username
 Use this only if the user account still exists but you want to remove their home directory manually.
+---
+
+Adding User in Linux:
+useradd bhosale // adding user without home directory
+useradd -m BHOSALE // adding user with home directory
+---
+pwd is knowing current path
+---
+sdbhosale@humanrobot:/home$ sudo su
+[sudo] password for sdbhosale:
+root@humanrobot:/home# useradd bhosale
+root@humanrobot:/home# clear
+root@humanrobot:/home# ls
+laxmi  poojabhosale  sdbhosale  tanmaybhosale
+root@humanrobot:/home# useradd -m bhosale
+useradd: user 'bhosale' already exists
+root@humanrobot:/home# useradd -m BHOSALE
+root@humanrobot:/home# ls
+BHOSALE  laxmi  poojabhosale  sdbhosale  tanmaybhosale
 ---
