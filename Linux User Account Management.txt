@@ -140,3 +140,9 @@ root@humanrobot:/home# ls -ltr
 
 display all users with details
 ---
+less /etc/group
+to check group added in Linux
+Press End key to go to bottom
+
+Shift+q -> to close
+---
