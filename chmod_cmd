@@ -1,0 +1,85 @@
+Here’s your `chmod` command information written in **proper GitHub README.md** (Markdown) format:
+
+---
+
+````markdown
+# chmod Command in Linux
+
+The `chmod` command in Linux is used to **change the permissions** of files and directories.
+
+---
+
+## 📌 Syntax
+
+```bash
+chmod [permissions] [file or directory]
+````
+
+---
+
+## 🔧 Symbolic Notation Examples
+
+| Command              | Description                                        |
+| -------------------- | -------------------------------------------------- |
+| `chmod u+x filename` | Adds execute permission for the user (owner)       |
+| `chmod g-w filename` | Removes write permission from the group            |
+| `chmod o+r filename` | Adds read permission for others                    |
+| `chmod a+r filename` | Adds read permission for all (user, group, others) |
+
+---
+
+## 🔢 Numeric (Octal) Notation Examples
+
+```bash
+chmod 755 filename
+```
+
+**Explanation of 755:**
+
+* `7` (Owner): Read (4) + Write (2) + Execute (1) = **7**
+* `5` (Group): Read (4) + Execute (1) = **5**
+* `5` (Others): Read (4) + Execute (1) = **5**
+
+| Octal | Permissions | Meaning                                |
+| ----- | ----------- | -------------------------------------- |
+| 777   | `rwxrwxrwx` | Full access to everyone                |
+| 755   | `rwxr-xr-x` | Owner full, others can read/execute    |
+| 644   | `rw-r--r--` | Owner can read/write, others read only |
+| 600   | `rw-------` | Only owner can read and write          |
+
+---
+
+## 📁 Recursive Permission Change
+
+To apply permissions recursively to a folder and its contents:
+
+```bash
+chmod -R 755 foldername
+```
+
+---
+
+## ✅ Tip
+
+To make a script executable:
+
+```bash
+chmod +x script.sh
+```
+
+---
+
+## 📚 More Info
+
+Refer to the `man` page for `chmod`:
+
+```bash
+man chmod
+```
+
+```
+
+---
+
+Let me know if you'd like this saved to a `.md` file or pushed to a GitHub repo.
+```
