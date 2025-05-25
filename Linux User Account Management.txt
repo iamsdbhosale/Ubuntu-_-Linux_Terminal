@@ -83,7 +83,7 @@ Adding User in Linux:
 useradd bhosale // adding user without home directory
 useradd -m BHOSALE // adding user with home directory
 
-sudo userdel -r
+sudo userdel -r BHOSALE
 or for Root user :
 userdel -r BHOSALE
 ---
