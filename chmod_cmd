@@ -48,3 +48,109 @@ To make a script executable:
 
 
 chmod +x script.sh
+---
+In Linux, the default permissions for newly created files and directories are determined by:
+
+Base default permissions
+
+The current user's umask value
+
+🧱 1. Base Default Permissions
+Files: 666 (read & write for everyone)
+
+Directories: 777 (read, write & execute for everyone)
+
+Note: For files, execute permission is not granted by default for safety reasons.
+
+🎭 2. umask (User Mask)
+The umask is a 3-digit octal value that subtracts permissions from the base.
+
+You can view your current umask with:
+
+
+umask
+Common default umask values:
+
+022 – Subtracts write for group and others
+
+📄 Example: File Creation
+With default base permission 666 and umask 022:
+
+
+666 (base) - 022 (umask) = 644
+🔹 Result: rw-r--r-- → User can read/write; group and others can read
+
+📁 Example: Directory Creation
+With base permission 777 and umask 022:
+
+
+777 (base) - 022 (umask) = 755
+🔹 Result: rwxr-xr-x → User full access; group and others can read/execute
+
+✅ Summary Table
+Item	Base Permission	umask 022 Result	Final Permission
+File	666	644	rw-r--r--
+Directory	777	755	rwxr-xr-x
+---
+Here’s a comprehensive table of all possible file and directory permissions in Linux using the numeric (octal) format, along with their symbolic representation and meaning:
+
+📊 All File/Directory Permission Combinations
+Octal	Symbolic	Meaning (User - Group - Others)
+000	---------	No permissions for anyone
+001	--------x	Execute only for others
+002	-------w-	Write only for others
+003	-------wx	Write and execute for others
+004	------r--	Read only for others
+005	------r-x	Read and execute for others
+006	------rw-	Read and write for others
+007	------rwx	Full access for others
+010	-----x---	Execute only for group
+020	----w----	Write only for group
+030	----wx---	Write and execute for group
+040	---r-----	Read only for group
+050	---r-x---	Read and execute for group
+060	---rw----	Read and write for group
+070	---rwx---	Full access for group
+100	--x------	Execute only for user
+200	-w-------	Write only for user
+300	-wx------	Write and execute for user
+400	r--------	Read only for user
+500	r-x------	Read and execute for user
+600	rw-------	Read and write for user
+700	rwx------	Full access for user
+644	rw-r--r--	Read/write (user), read-only (group/others)
+666	rw-rw-rw-	Read/write for all
+755	rwxr-xr-x	Full (user), read/execute (group/others)
+777	rwxrwxrwx	Full access for everyone
+
+🔤 Legend
+r: Read permission
+
+w: Write permission
+
+x: Execute permission
+
+-: No permission
+
+---
+Here’s a table of the most commonly used Linux file and directory permissions, including their octal code, symbolic notation, and typical use cases:
+
+✅ Most Commonly Used Permissions
+Octal	Symbolic	Description	Common Use Case
+600	rw-------	Owner can read/write	Private files (e.g., config files, SSH keys)
+644	rw-r--r--	Owner can read/write, others read only	Text files, web pages, config files (readable by others)
+666	rw-rw-rw-	Everyone can read and write (⚠️ risky)	Shared files in trusted environments
+700	rwx------	Owner has full access	Private scripts or directories
+755	rwxr-xr-x	Owner full access, others can read/execute	Executable scripts, web directories
+775	rwxrwxr-x	Owner and group full, others read/execute	Shared project folders
+777	rwxrwxrwx	Everyone has full access (⚠️ risky)	Temporary or testing purposes only
+
+🔐 Notes
+644 is the default for most files.
+
+755 is the default for most directories.
+
+700 is ideal for private use (no access to others).
+
+Avoid 777 unless absolutely necessary and in a safe environment.
+---
