@@ -158,3 +158,85 @@ sudo groupadd QA
 To change group of existing user :
 usermod -g QA laxmi
 ---
+
+
+The useradd command in Linux is used to create a new user account on the system. It's a low-level command, and often used by system administrators to add users manually.
+
+🔧 Syntax
+useradd [options] USERNAME
+⚙️ Common Options
+Option	Description
+-c	Comment (usually full name)
+-d	Home directory
+-e	Expiry date of the account (YYYY-MM-DD)
+-f	Days after password expires until account is disabled
+-g	Initial login group
+-G	Additional groups (comma-separated)
+-m	Create the home directory if it doesn't exist
+-M	Do not create the home directory
+-N	Do not create a group with the same name as the user
+-p	Encrypted password
+-s	Login shell
+-u	User ID (UID)
+-r	Create a system account (usually for daemons)
+
+✅ Basic Examples
+1. Add a user
+sudo useradd john
+Creates a user john without a home directory.
+
+2. Add user with home directory
+sudo useradd -m john
+Creates /home/john and sets it as the home directory.
+
+3. Add user with full name and default shell
+sudo useradd -m -c "John Doe" -s /bin/bash john
+Adds a user with a Bash shell and full name comment.
+
+4. Add user with specific home directory
+sudo useradd -m -d /custom/home/john john
+Home directory will be /custom/home/john.
+
+5. Add user with custom UID and GID
+sudo useradd -u 1050 -g 100 john
+UID: 1050, GID: 100 (you must ensure GID 100 exists).
+
+6. Add user to additional groups
+sudo useradd -m -G sudo,developers john
+User will also be added to sudo and developers groups.
+
+7. Add user with account expiry
+sudo useradd -e 2025-12-31 john
+Account will expire on Dec 31, 2025.
+
+🔐 Setting Password
+After creating a user, set a password:
+
+sudo passwd john
+🔍 Check User Info
+getent passwd john
+Or
+
+id john
+🗑️ Delete a User
+sudo userdel john
+Delete with home directory:
+
+
+sudo userdel -r john
+📁 Default Files Affected
+/etc/passwd – User account information
+/etc/shadow – Encrypted passwords and aging info
+/etc/group – Groups info
+/etc/default/useradd – Default settings for useradd
+/etc/skel/ – Default files copied to new user's home
+---
+
+
+sudo useradd -m -c "Sachin Bhosale" -s /bin/bash humanRobot
+
+humanRobot@humanrobot:~$ getent passwd humanRobot
+humanRobot:x:1005:1007:Sachin Bhosale:/home/humanRobot:/bin/bash
+humanRobot@humanrobot:~$ id humanRobot
+uid=1005(humanRobot) gid=1007(humanRobot) groups=1007(humanRobot)
+---
