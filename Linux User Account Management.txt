@@ -240,3 +240,53 @@ humanRobot:x:1005:1007:Sachin Bhosale:/home/humanRobot:/bin/bash
 humanRobot@humanrobot:~$ id humanRobot
 uid=1005(humanRobot) gid=1007(humanRobot) groups=1007(humanRobot)
 ---
+
+The number of users you can create on an Ubuntu (or any Linux) system is primarily limited by system constraints, not by a hardcoded number. Here's a breakdown:
+
+🔢 Theoretical Limit
+Each user on Linux is identified by a User ID (UID), which is an unsigned integer. The maximum number of users depends on the UID range.
+
+▶ UID Range
+UIDs are typically 32-bit integers.
+
+So, maximum UID value is:
+
+
+2^32 - 1 = 4,294,967,295
+UID 0 is reserved for root, and some lower UIDs are reserved for system or service accounts.
+
+➡ So in theory, you can have over 4 billion users.
+
+⚠️ Practical Limit
+In practice, these factors reduce the real number:
+
+Factor	Explanation
+/etc/passwd file performance	Every user entry is stored in /etc/passwd. With tens of thousands of users, it becomes slow to read or search.
+Filesystem limits	Very large number of home directories might slow down the system (depends on filesystem like ext4 or XFS).
+Login limitations	Having thousands of active users logged in at the same time is limited by CPU, RAM, and PAM/session limits.
+UID limit settings	Ubuntu typically sets UID_MIN and UID_MAX in /etc/login.defs, like this:
+
+
+UID_MIN 1000  
+UID_MAX 60000
+So by default, you can create about 59,000 normal users, unless you change this range.
+
+🛠️ How to Check/Change UID Range
+To check:
+
+
+cat /etc/login.defs | grep UID
+To change:
+Edit /etc/login.defs and update:
+
+
+UID_MIN 1000
+UID_MAX 999999
+Then you can create more users with useradd.
+
+🧪 Summary
+Type	Limit
+Theoretical	~4.3 billion users
+Default Ubuntu practical limit	~59,000 normal users (UID 1000–60000)
+Adjustable?	✅ Yes, via /etc/login.defs
+---
